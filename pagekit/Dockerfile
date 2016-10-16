@@ -24,5 +24,7 @@ RUN apt-get update \
 WORKDIR /pagekit
 RUN wget https://github.com/pagekit/pagekit/releases/download/${PAGEKIT_VERSION}/pagekit-${PAGEKIT_VERSION}.zip -O /pagekit/pagekit.zip \
     && unzip /pagekit/pagekit.zip \
-    && rm /pagekit/pagekit.zip
+    && rm /pagekit/pagekit.zip \
+    && chown www-data:www-data -R /pagekit \
+    && chmod g+w -R /pagekit
 VOLUME ["/pagekit", "/pagekit/storage", "/pagekit/app/cache"]

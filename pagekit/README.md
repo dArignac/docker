@@ -61,7 +61,6 @@ services:
 	image: cogniteev/echo
 	volumes:
 	  - ./docker/mounts/mysql:/var/lib/mysql
-	  - ./docker/mounts/storage:/pagekit/storage
 	  - ./docker/config/nginx:/etc/nginx/conf.d/
 ```
 

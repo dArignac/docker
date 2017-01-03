@@ -20,7 +20,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install zip pdo_mysql \
     && docker-php-source delete \
-    && mkdir -p /pagekit
+    && mkdir -p /pagekit \
+    && mkdir -p /pagekit-custom
 WORKDIR /pagekit
 RUN wget https://github.com/pagekit/pagekit/releases/download/${PAGEKIT_VERSION}/pagekit-${PAGEKIT_VERSION}.zip -O /pagekit/pagekit.zip \
     && unzip /pagekit/pagekit.zip \

@@ -62,7 +62,6 @@ services:
 	volumes:
 	  - ./docker/mounts/mysql:/var/lib/mysql
 	  - ./docker/mounts/storage:/pagekit/storage
-	  - ./docker/mounts/cache:/pagekit/app/cache
 	  - ./docker/config/nginx:/etc/nginx/conf.d/
 ```
 

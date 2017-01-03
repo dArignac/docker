@@ -1,6 +1,6 @@
-FROM php:7.0-fpm
+FROM php:7-fpm
 MAINTAINER Alexander Herrmann <darignac@gmail.com>
-ENV PAGEKIT_VERSION=1.0.8
+ENV PAGEKIT_VERSION=1.0.10
 RUN apt-get update \
     && apt-get -y install \
     unzip \
@@ -18,7 +18,7 @@ RUN apt-get update \
 #    php7.0-mbstring \
 #    php7.0-zip \
     && rm -rf /var/lib/apt/lists/* \
-    && docker-php-ext-install zip \
+    && docker-php-ext-install zip pdo_mysql \
     && docker-php-source delete \
     && mkdir -p /pagekit
 WORKDIR /pagekit

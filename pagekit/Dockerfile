@@ -28,4 +28,4 @@ RUN wget https://github.com/pagekit/pagekit/releases/download/${PAGEKIT_VERSION}
     && chown www-data:www-data -R /pagekit \
     && chmod g+w -R /pagekit
     && chmod +x /pagekit/pagekit
-VOLUME ["/pagekit", "/pagekit/storage", "/pagekit/app/cache"]
+VOLUME ["/pagekit"]

@@ -131,17 +131,94 @@ Folders and files explained:
 	* ``pagekit``
 		* the default structure as within a pagekit installation
 		* put your custom packages here, they'll be mounted to the page installation path within the container (/pagekit/packages/pagekit)
+		* to use this, you have to adjust some things, [see below](#automatic-with-custom-packages)
 
-### Pagekit installation
-Open the website (in my example http://mywebsite.com) and enter the appropriate values, the database host is ``db``.
-
-With a ``compose.env`` file like this it has to look like that:
-
-```
-MYSQL_ROOT_PASSWORD=Iweka2Ufuk44
-MYSQL_DATABASE=pkdb
-MYSQL_USER=pku
-MYSQL_PASSWORD=Iposa3Ebor61
-```
+## Pagekit installation
+### Default
+Open the website (in my example http://mywebsite.com) and enter the appropriate values (see your ``compose.env`` file), the database host is ``db``:
 
 ![Pagekit installation](https://raw.githubusercontent.com/dArignac/docker/master/pagekit/pki.png "Pagekit Installation screen")
+
+### Automatic with custom packages
+To have pagekit being installed automatically and custom packages (like your custom theme) being installed automatically, follow the following steps.
+
+#### Adjust compose.env
+You have to setup at least the database specific values within the environment file. The environment variable names are based on the parameters of the ``pagekit setup`` CLI command:
+
+```
+root@991f89bf2c32:/pagekit# ./pagekit setup -h
+Usage:
+  setup [options]
+
+Options:
+  -u, --username=USERNAME      Admin username [default: "admin"]
+  -p, --password=PASSWORD      Admin account password
+  -t, --title[=TITLE]          Site title [default: "Pagekit"]
+  -m, --mail[=MAIL]            Admin account email [default: "admin@example.com"]
+  -d, --db-driver=DB-DRIVER    DB driver ('sqlite' or 'mysql') [default: "sqlite"]
+      --db-prefix[=DB-PREFIX]  DB prefix [default: "pk_"]
+  -H, --db-host[=DB-HOST]      MySQL host
+  -N, --db-name[=DB-NAME]      MySQL database name
+  -U, --db-user[=DB-USER]      MySQL user
+  -P, --db-pass[=DB-PASS]      MySQL password
+  -l, --locale[=LOCALE]        Locale [default: "en_GB"]
+  -h, --help                   Display this help message
+  -q, --quiet                  Do not output any message
+  -V, --version                Display this application version
+      --ansi                   Force ANSI output
+      --no-ansi                Disable ANSI output
+  -n, --no-interaction         Do not ask any interactive question
+  -v|vv|vvv, --verbose         Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+Help:
+ Setup a Pagekit installation
+```
+
+##### Minimum compose.env
+
+```
+MYSQL_ROOT_PASSWORD=XXX
+MYSQL_DATABASE=pkdb
+MYSQL_USER=pku
+MYSQL_PASSWORD=Avavefuba662
+PAGEKIT_DB_DRIVER=mysql
+PAGEKIT_DB_PREFIX=pk_
+PAGEKIT_DB_HOST=db
+PAGEKIT_DB_USERNAME=pku
+PAGEKIT_DB_NAME=pkdb
+PAGEKIT_DB_PASSWORD=Avavefuba662
+```
+
+##### Full compose.env
+
+```
+MYSQL_ROOT_PASSWORD=XXX
+MYSQL_DATABASE=pkdb
+MYSQL_USER=pku
+MYSQL_PASSWORD=Avavefuba662
+PAGEKIT_USERNAME=admin
+PAGEKIT_PASSWORD=password
+PAGEKIT_TITLE=My Pagekit Website
+PAGEKIT_MAIL=admin@mywebsite.com
+PAGEKIT_LOCALE=en_GB
+PAGEKIT_DB_DRIVER=mysql
+PAGEKIT_DB_PREFIX=pk_
+PAGEKIT_DB_HOST=db
+PAGEKIT_DB_USERNAME=pku
+PAGEKIT_DB_NAME=pkdb
+PAGEKIT_DB_PASSWORD=Avavefuba662
+```
+
+#### Adjust docker-compose.yml
+Add the ``command`` keyword to the pagekit container:
+
+```
+...
+pagekit:
+    image: darignac/pagekit
+    env_file: compose.env
+    entrypoint: "/pagekit/entrypoint.sh"
+    ports:
+      - "9000:9000"
+...
+```

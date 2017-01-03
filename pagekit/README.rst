@@ -6,7 +6,7 @@ Intro
 
 Docker image for `Pagekit CMS`_.
 
-**This image is currently only meant for development purposes!**
+**This image is currently in development!! Not fully functional!**
 
 Pagekit Version: 1.0.10
 PHP Version: 7

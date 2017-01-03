@@ -8,7 +8,7 @@ done;
 
 # install pagekit but wait for DB
 sleep 10
-/pagekit/pagekit setup \
+/pagekit/pagekit setup -vvv --no-interaction \
 	--username=${PAGEKIT_USERNAME} \
 	--password=${PAGEKIT_PASSWORD} \
 	--title="${PAGEKIT_TITLE}" \

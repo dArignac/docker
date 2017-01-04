@@ -63,6 +63,7 @@ services:
       - ./docker/mounts/mysql:/var/lib/mysql/
       - ./docker/nginx:/etc/nginx/conf.d/
       - ./packages/pagekit:/pagekit-custom/
+      - ./docker/pagekit:/pagekit-config/
 ```
 
 This setup assumes the following folder layout:
@@ -221,4 +222,14 @@ pagekit:
     ports:
       - "9000:9000"
 ...
+```
+
+#### Keeping the database
+If there is no ``./docker/pagekit/config.php`` file locally and you use the automatic setup then pagekit will be setup each time the containers are newly created. As the database files are mounted this is probably not what you want. If you put your custom ``config.php`` under ``./docker/pagekit/config.php`` then this file will be copied to the pagekit directory and no setup will be executed. Please remember that you have to recreate the container if you adjusted this config file.
+
+You can obtain the initial config file after the automatic setup from the container itself:
+
+```
+docker exec -it <CONTAINERNAME> /bin/bash
+cat /pagekit/config.php
 ```

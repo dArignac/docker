@@ -8,6 +8,8 @@ done;
 
 # install pagekit but wait for DB
 sleep 10
+
+# this is run as root
 /pagekit/pagekit setup -vvv --no-interaction \
 	--username=${PAGEKIT_USERNAME} \
 	--password=${PAGEKIT_PASSWORD} \
@@ -20,6 +22,9 @@ sleep 10
 	--db-user=${PAGEKIT_DB_USERNAME} \
 	--db-pass=${PAGEKIT_DB_PASSWORD} \
 	--locale=${PAGEKIT_LOCALE}
+
+# adjust config.php ownership
+chown www-data:www-data config.php
 
 # run the default entrypoint and command of php image
 /usr/local/bin/docker-php-entrypoint php-fpm

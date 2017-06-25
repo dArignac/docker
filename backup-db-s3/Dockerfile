@@ -1,7 +1,7 @@
 FROM alpine
 MAINTAINER Alexander Herrmann <darignac@gmail.com>
 RUN apk update && apk upgrade
-RUN apk add python postgresql-client curl
+RUN apk add python postgresql curl
 RUN rm -rf /var/cache/apk/*
 
 RUN adduser -D -u 1000 -g 'bu' bu

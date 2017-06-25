@@ -1,2 +1,2 @@
 #!/bin/ash
-echo "TODO IMPLEMENT"
+echo "backup-db-s3"

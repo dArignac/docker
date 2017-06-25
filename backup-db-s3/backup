@@ -1,2 +1,3 @@
 #!/bin/ash
-echo "backup-db-s3"
+FILENAME=${DB_NAME}-`date +%Y-%m-%d`.sql.gz
+pg_dump -Fp -h ${DB_HOST} -b -U ${DB_USER} ${DB_NAME} | gzip > /tmp/${FILENAME}

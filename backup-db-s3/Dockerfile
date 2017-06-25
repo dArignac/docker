@@ -11,7 +11,7 @@ WORKDIR /tmp
 RUN curl -L -o get-pip.py https://bootstrap.pypa.io/get-pip.py \
     && python get-pip.py \
     && rm get-pip.py \
-    && pip install python-dateutil
+    && pip install python-dateutil python-magic
 
 RUN curl -o s3cmd.zip -L https://github.com/s3tools/s3cmd/releases/download/v1.6.1/s3cmd-1.6.1.zip \
     && unzip s3cmd.zip \

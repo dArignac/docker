@@ -15,7 +15,7 @@ This image is in development, but you can already use it with the described scen
 ### docker-compose
 Add the image as service to your compose file.
 Below is an example with a default postgres container, the user name as well as the database name are `postgres` in this case.
-The example is pretty self-explaining:
+You have to set all given environment variables.
 
     version: '2'
     services:
@@ -23,6 +23,7 @@ The example is pretty self-explaining:
         image: postgres
       backup:
         image: darignac/backup-db-s3
+        command: backup --noop
         depends_on:
           - db
         environment:
@@ -35,5 +36,6 @@ The example is pretty self-explaining:
           AWS_SECRET_ACCESS_KEY: <AWS_SECRET_ACCESS_KEY>
 
 Then run the backup with: `docker-compose run backup`.
+Note that the compose file overrides the default command with `backup --noop` which results in nothing being done on compose up. You surely do not want to run the backup and put it to S3 on each `docker-compose up -d`.
 
 If you do not like to store the AWS secrets in your probably SCM versioned `docker-compose.yml` (which is always a good pratice), then use a `docker-compose.override.yml` containing the secrets (and SCN ignore it), see [here](https://docs.docker.com/compose/extends/).

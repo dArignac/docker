@@ -34,4 +34,6 @@ The example is pretty self-explaining:
           AWS_ACCESS_KEY: <AWS_ACCESS_KEY>
           AWS_SECRET_ACCESS_KEY: <AWS_SECRET_ACCESS_KEY>
 
+Then run the backup with: `docker-compose run backup`.
+
 If you do not like to store the AWS secrets in your probably SCM versioned `docker-compose.yml` (which is always a good pratice), then use a `docker-compose.override.yml` containing the secrets (and SCN ignore it), see [here](https://docs.docker.com/compose/extends/).

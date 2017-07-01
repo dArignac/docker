@@ -1,7 +1,9 @@
 #!/bin/ash
 if [ "$1" != "--noop" ]; then
+    echo "${DB_HOST}:${DB_PORT}:${DB_NAME}:${DB_USER}:${DB_PASSWORD}" > ~/.pgpass
     FILENAME=${DB_NAME}-`date +%Y-%m-%d`.sql.gz
     pg_dump -Fp -h ${DB_HOST} -b -U ${DB_USER} ${DB_NAME} | gzip > /tmp/${FILENAME}
     s3cmd put /tmp/${FILENAME} "s3://${S3_PATH}"
     rm /tmp/${FILENAME}
+    rm ~/.pgpass
 fi

@@ -28,6 +28,7 @@ You have to set all given environment variables.
           - db
         environment:
           DB_HOST: db
+          DB_PORT: 5432
           DB_USER: postgres
           DB_NAME: postgres
           DB_PASSWORD: postgres

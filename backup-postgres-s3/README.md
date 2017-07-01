@@ -1,13 +1,10 @@
-# backup-db-s3
-This docker image intends to provide functionality to backup your databases running in docker containers and to store them on AWS S3.
-It simply calls the appropriate database backup script and uploads the file using [s3cmd](http://s3tools.org/s3cmd).
-
-## Supported databases
-- postgres
+# backup-postgres-s3
+This docker image intends to provide functionality to backup your postgresql database running in docker containers and to store them on AWS S3.
+It simply calls the ``pg_dump`` and uploads the file using [s3cmd](http://s3tools.org/s3cmd).
 
 ## Image and sources
-The image is automatically built and can be found here: [https://hub.docker.com/r/darignac/backup-db-s3/](https://hub.docker.com/r/darignac/backup-db-s3/)
-The source code can be found on Github: [https://github.com/dArignac/docker/backup-db-s3](https://github.com/dArignac/docker/tree/master/backup-db-s3)
+The image is automatically built and can be found here: [https://hub.docker.com/r/darignac/backup-postgres-s3/](https://hub.docker.com/r/darignac/backup-postgres-s3/)
+The source code can be found on Github: [https://github.com/dArignac/docker/backup-postgres-s3](https://github.com/dArignac/docker/tree/master/backup-postgres-s3)
 
 ## Usage
 This image is in development, but you can already use it with the described scenarios below:

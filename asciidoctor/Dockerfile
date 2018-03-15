@@ -1,6 +1,6 @@
 FROM openjdk:jre
 
-MAINTAINER Alexander Herrmann <darignac@gmail.com>
+LABEL maintainer="Alexander Herrmann <darignac@gmail.com>"
 
 #RUN apk update && apk upgrade
 #RUN apk add ruby ruby-dev ruby-bundler build-base zlib-dev
@@ -11,10 +11,10 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y ruby graphviz rub
 
 RUN gem install --no-ri --no-rdoc json
 RUN gem install --no-ri --no-rdoc asciidoctor --version 1.5.6.1
-RUN gem install --no-ri --no-rdoc asciidoctor-diagram --version 1.5.5
-RUN gem install --no-ri --no-rdoc asciidoctor-epub3 --version 1.5.0.alpha.7
+RUN gem install --no-ri --no-rdoc asciidoctor-diagram --version 1.5.8
+RUN gem install --no-ri --no-rdoc asciidoctor-epub3 --version 1.5.0.alpha.8
 RUN gem install --no-ri --no-rdoc asciidoctor-pdf --version 1.5.0.alpha.16
-RUN gem install --no-ri --no-rdoc asciidoctor-revealjs --version 1.0.4
+RUN gem install --no-ri --no-rdoc asciidoctor-revealjs --version 1.1.3
 
 #RUN rm -rf /var/cache/apk/*
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

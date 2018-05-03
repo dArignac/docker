@@ -4,7 +4,7 @@ Best to use it via a file `php`, make it executable and add the following:
 
 ```
 #!/bin/bash
-docker run --rm -i -v /home/alex:/home/alex php:alpine php "$@"
+docker run --rm -i -v /home/alex:/home/alex -v $PWD:/code -w /code darignac/php:alpine php "$@"
 ```
 
 Then run for example:
